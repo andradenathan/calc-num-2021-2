@@ -1,4 +1,4 @@
-from math import cos, pi, fabs
+from math import fabs
 
 def f(x):
   """
