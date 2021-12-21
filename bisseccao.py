@@ -13,9 +13,9 @@ def bisseccao(funcao, a, b, erro):
   """
   ponto_medio = (a+b)/2
   
-  # Quando (b - a) for maior do que o erro, isto é, teremos a raíz aproximada 
+  # Quando (b - a) for menor do que o erro, isto é, teremos a raíz aproximada 
   # da função.
-  if fabs(b-a)/2 > erro:
+  if fabs(b-a)/2 < erro:
     return ponto_medio
 
   # Como o intervalo não é válido, retornaremos a raíz do ponto médio.
