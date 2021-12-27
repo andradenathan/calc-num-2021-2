@@ -7,26 +7,25 @@ def f(x):
   return x**2 - 3*x + 1
 
 
-def bisseccao(funcao, a, b, erro):
+def bisseccao(f, a, b, tolerancia, iteracao_max):
   """
   Método da Bissecção recursiva para encontrar raízes
   """
-  ponto_medio = (a+b)/2
-  
-  # Quando (b - a) for menor do que o erro, isto é, teremos a raíz aproximada 
-  # da função.
-  if fabs(b-a)/2 < erro:
-    return ponto_medio
+  i = 0
+  while i <= iteracao_max:
+    p = (a+b)/2
+    # Critério de parada, isto é, o intervalo não é válido, então retornaremos
+    # a raíz do ponto médio.
+    if fabs(b-a)/2 < tolerancia or f(p) == 0:
+      return p
 
-  # Como o intervalo não é válido, retornaremos a raíz do ponto médio.
-  if f(ponto_medio) == 0:
-    return ponto_medio
-
-  # Se o resultado for negativo, então, a raíz está entre o intervalo
-  # de [a, p], de modo que b = p. 
-  if f(a) * f(ponto_medio) < 0:
-    return bisseccao(funcao, a, ponto_medio, erro)
+    # Se o resultado for negativo, então, a raíz está entre o intervalo
+    # de [a, p], de modo que b = p. 
+    if f(a) * f(p) < 0:
+      b = p
   
-  # Do contrário, a raíz está entre o intervalo de [p, b], de modo que a = p.
-  else:
-    return bisseccao(funcao, ponto_medio, b, erro)
+    # Do contrário, a raíz está entre o intervalo de [p, b], de modo que a = p.
+    else:
+      a = p
+
+    i += 1
